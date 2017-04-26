@@ -5,6 +5,7 @@ import color from "../../util/color";
 const styles = {
   section: {
     width: 1600,
+    marginBottom: 50
   },
   heading: {
     paddingLeft: 20,
@@ -42,8 +43,7 @@ const styles = {
     textDecoration: 'none'
   },
   content: {
-    marginBottom: 50,
-    marginLeft: 10
+    marginLeft: 10,
   }
 };
 
@@ -53,11 +53,9 @@ const CollapsibleSection = React.createClass({
       React.PropTypes.node,
       React.PropTypes.arrayOf(React.PropTypes.node)
     ]),
-    sectionData: React.PropTypes.shape({
-      header: React.PropTypes.string.isRequired,
-      linkText: React.PropTypes.string.isRequired,
-      link: React.PropTypes.string.isRequired,
-    })
+    header: React.PropTypes.string.isRequired,
+    linkText: React.PropTypes.string.isRequired,
+    link: React.PropTypes.string.isRequired,
   },
 
   getInitialState() {
@@ -100,16 +98,16 @@ const CollapsibleSection = React.createClass({
 
   render() {
 
-    const sectionData = this.props.sectionData;
+    const { header, linkText, link } = this.props;
 
     return (
       <div style={styles.section}>
         <div style={styles.heading}>
           {this.renderArrowIcon()}
-          {sectionData.header}
-          <a href={sectionData.link} style={styles.linkBox}>
+          {header}
+          <a href={link} style={styles.linkBox}>
             <div style={styles.linkToViewAll}>
-              {sectionData.linkText}
+              {linkText}
             </div>
             <FontAwesome icon="chevron-right" style={styles.chevron}/>
           </a>

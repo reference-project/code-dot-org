@@ -5,8 +5,8 @@ import CourseCard from './CourseCard';
 import GradientNavCard from './GradientNavCard';
 import SetUpMessage from './SetUpMessage';
 import Notification from '../Notification';
-import Announcement from './Announcement';
-import Hero from './Hero';
+// import Announcement from './Announcement';
+// import Hero from './Hero';
 
 const CourseCardExample = {
   courseName: "CSP Unit 2 - Digital Information",
@@ -41,31 +41,37 @@ export default storybook => {
         description: 'Teacher Homepage',
         story: () => (
           <TeacherHomepage>
-            <Hero
-              heading="Teacher Dashboard"
-            />
+
             <Notification
               type="information"
               notice="The Teacher Homepage has been redesigned!"
               details="Doesn't it look so snazzy?"
-              dismissible="true"
+              dismissible={true}
             />
+
             <CollapsibleSection
-              heading="Recent Courses"
+              header="Recent Courses"
+              linkText="View All Courses"
+              link= " "
             >
               <CourseCard cardData={CourseCardExample}/>
               <CourseCard cardData={CourseCardExample}/>
             </CollapsibleSection>
+
             <CollapsibleSection
-              heading="Manage Sections"
+              header="Manage Sections"
+              linkText="Add New Section"
+              link= " "
             >
               <SetUpMessage type="sections"/>
             </CollapsibleSection>
 
             <CollapsibleSection
-              heading="Announcements and News"
+              header="Announcements and News"
+              linkText="View All Announcements"
+              link= " "
             >
-              <Announcement/>
+              <div>This is where the announcements will go.</div>
             </CollapsibleSection>
             <GradientNavCard cardData={GradientNavCard1}/>
             <GradientNavCard cardData={GradientNavCard2}/>
