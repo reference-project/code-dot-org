@@ -1,4 +1,6 @@
 import React from 'react';
+// import CollapsibleSection from './CollapsibleSection';
+// import GradientNavCard from './GradientNavCard';
 
 const TeacherHomepage = React.createClass({
   propTypes: {
