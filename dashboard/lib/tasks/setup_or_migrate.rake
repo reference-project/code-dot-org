@@ -17,7 +17,7 @@ namespace :db do
       Rake::Task["db:migrate"].invoke
     else
       Rake::Task["db:create"].invoke
-      Rake::Task["db:schema:load"].invoke
+      Rake::Task["db:structure:load"].invoke
     end
   end
 end
