@@ -31,12 +31,6 @@
 class Pd::Workshop < ActiveRecord::Base
   acts_as_paranoid # Use deleted_at column instead of deleting rows.
 
-  TYPES = [
-    TYPE_PUBLIC = 'Public',
-    TYPE_PRIVATE = 'Private',
-    TYPE_DISTRICT = 'District'
-  ]
-
   COURSES = [
     COURSE_CSF = 'CS Fundamentals',
     COURSE_CSP = 'CS Principles',
@@ -472,35 +466,5 @@ class Pd::Workshop < ActiveRecord::Base
   # Get all the teachers that have actually attended this workshop via the attendence.
   def attending_teachers
     sessions.flat_map(&:attendances).flat_map(&:teacher).uniq
-  end
-
-  # temporary data derivation method for recently-removed workshop_type column;
-  # can be removed as soon as client-facing features are updated to present
-  # on_map and funded.
-  # TODO elijah: remove this method  once it is no longer necessary
-  def workshop_type
-    if funded
-      on_map ? "Public" : "Private"
-    else
-      "District"
-    end
-  end
-
-  # temporary data transformation method that sets values for new on_map and
-  # funded columns from old workshop_type, for that transitional period where we
-  # temporarily have both sets on our way to removing workshop_type
-  # TODO elijah: remove this method  once it is no longer necessary
-  def set_on_map_and_funded_from_workshop_type(type)
-    case type
-      when Pd::Workshop::TYPE_PUBLIC
-        self.on_map = true
-        self.funded = true
-      when Pd::Workshop::TYPE_PRIVATE
-        self.on_map = false
-        self.funded = true
-      when Pd::Workshop::TYPE_DISTRICT
-        self.on_map = false
-        self.funded = false
-    end
   end
 end
